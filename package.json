@@ -1,0 +1,23 @@
+{
+  "name": "genius-crawler",
+  "version": "1.0.0",
+  "description": "Lyrics crawler for genius.com",
+  "main": "crawl.js",
+  "scripts": {
+    "crawl": "node crawl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manaust/genius-crawler.git"
+  },
+  "author": "Manaus Transez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manaust/genius-crawler/issues"
+  },
+  "homepage": "https://github.com/manaust/genius-crawler#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "node-fetch": "^2.6.0"
+  }
+}
