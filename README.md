@@ -1,3 +1,3 @@
-# genius-crawler
+# Genius.com lyrics crawler
 
-Lyrics crawler for genius.com
+Node.js script that fetches lyrics from genius.com for Satanica's Metalcodex
