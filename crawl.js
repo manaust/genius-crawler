@@ -11,9 +11,6 @@ const formatLyrics = (text) => {
 
 const format = (input) => {
   let formatted = input;
-  if (formatted.indexOf(" -") != -1) {
-    formatted = formatted.substring(0, input.indexOf(" -"));
-  }
   if (formatted.indexOf(" (feat.") != -1) {
     formatted = formatted.substring(0, input.indexOf(" (feat."));
   }
@@ -24,6 +21,7 @@ const format = (input) => {
     .toLowerCase()
     .split(" ")
     .join("-")
+    .replace("?", "")
     .replace(/\&/g, "and")
     .replace(/\//g, "-")
     .replace(/\!/g, "")
@@ -35,7 +33,7 @@ const format = (input) => {
 };
 
 const writeToFile = (text, i) => {
-  fs.writeFile(`output/${i}.txt`, text, "utf8", (err) => {
+  fs.writeFile(`api/${i}.txt`, text, "utf8", (err) => {
     if (err) {
       console.error("An error occured while writing text to file.");
       return;
@@ -62,7 +60,7 @@ const crawl = async (id, name, artist) => {
 };
 
 // Fetch all song lyrics
-const data = JSON.parse(fs.readFileSync(`output/input.json`));
+const data = JSON.parse(fs.readFileSync(`api/songs.json`));
 
 for (let i = 0; i < data.length; i++) {
   crawl(data[i].id, data[i].name, data[i].artist);
