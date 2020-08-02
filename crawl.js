@@ -44,18 +44,20 @@ const writeToFile = (text, i) => {
 
 // Try recursive fetch when error with reformatted name
 const crawl = async (id, name, artist) => {
-  console.log(`Fetching url ${format(artist)}-${format(name)}-lyrics`);
-  const res = await fetch(
-    `https://genius.com/${format(artist)}-${format(name)}-lyrics`
-  );
-  const data = await res.text();
-  const $ = cheerio.load(data);
-  let lyrics = $(".lyrics").text().trim();
+  if (!fs.existsSync(`api/${id}.txt`)) {
+    console.log(`Fetching url ${format(artist)}-${format(name)}-lyrics`);
+    const res = await fetch(
+      `https://genius.com/${format(artist)}-${format(name)}-lyrics`
+    );
+    const data = await res.text();
+    const $ = cheerio.load(data);
+    let lyrics = $(".lyrics").text().trim();
 
-  if (lyrics == null || lyrics == "") {
-    console.log(`Lyrics not found for ${name} by ${artist}`);
-  } else {
-    writeToFile(formatLyrics(lyrics), id);
+    if (lyrics == null || lyrics == "") {
+      console.log(`Lyrics not found for ${name} by ${artist}`);
+    } else {
+      writeToFile(formatLyrics(lyrics), id);
+    }
   }
 };
 
